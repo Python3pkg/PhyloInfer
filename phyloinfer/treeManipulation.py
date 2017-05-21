@@ -24,7 +24,7 @@ def init(tree, branch=None, name='all', scale=0.1, display=False, return_map=Fal
             
         if return_map: idx2node[node.name] = node
         if display:
-            print node.name, node.dist
+            print(node.name, node.dist)
         
     if return_map: return idx2node
     
@@ -64,7 +64,7 @@ def idx2nodeMAP(tree):
 # perform NNI on interior branches
 def NNI(node, include=False):
     if node.is_root() or node.is_leaf():
-        print "Can not perform NNI on root or leaf branches!"
+        print("Can not perform NNI on root or leaf branches!")
     else:
         if include:
             neighboor = np.random.randint(3)

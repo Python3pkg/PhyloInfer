@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import re
 from Bio import Phylo
-from cStringIO import StringIO
+from io import StringIO
 from .treeManipulation import init
 from phyloinfer import Tree
 from collections import defaultdict
@@ -20,8 +20,8 @@ def treeStats(sampled_tree, target_tree_dict=None):
                 id2tree[ID] = tree
 
     else:
-        id2stats = {tree.get_topology_id():0.0 for _,tree in target_tree_dict.items()}
-        id2tree = {tree.get_topology_id():_ for _,tree in target_tree_dict.items()}
+        id2stats = {tree.get_topology_id():0.0 for _,tree in list(target_tree_dict.items())}
+        id2tree = {tree.get_topology_id():_ for _,tree in list(target_tree_dict.items())}
         for tree in sampled_tree:
             ID = tree.get_topology_id()
             if ID in id2stats:
@@ -30,7 +30,7 @@ def treeStats(sampled_tree, target_tree_dict=None):
     tree_samp_count = len(sampled_tree)*1.0
     for tree_id in id2stats:
         id2stats[tree_id] /= tree_samp_count
-    return sorted(id2stats.items(), key=lambda x:x[1], reverse=True), id2tree
+    return sorted(list(id2stats.items()), key=lambda x:x[1], reverse=True), id2tree
 
 
 def savePara(sampled_branch, filename, ID):

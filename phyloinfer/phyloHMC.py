@@ -54,7 +54,7 @@ def hmc_iter(curr_tree, curr_branch, curr_U, D, U, beta, pden, L, nLeap, stepsz,
     propH = prop_U + 0.5 * sum(propM*propM)
     
     if monitor_event:
-        print "NNI attempts: {}\nRef attempts: {}".format(NNI_attempts, Ref_attempts)
+        print("NNI attempts: {}\nRef attempts: {}".format(NNI_attempts, Ref_attempts))
         sys.stdout.flush()
     
     ratio = currH - propH
@@ -88,7 +88,7 @@ def hmc(curr_tree, curr_branch, Qmat_para, data, nLeap, stepsz, nIter, subModel=
     
     # initialize the conditional likelihood on tips
     if len(curr_tree) != len(data):
-        print "#tips do not match the data!!!"
+        print("#tips do not match the data!!!")
         return
     L = initialCLV(data)
     
@@ -137,7 +137,7 @@ def hmc(curr_tree, curr_branch, Qmat_para, data, nLeap, stepsz, nIter, subModel=
             
         accept_rate.append(ar)
         nni_attempts.append(NNI_attempts)
-        print "{} iteration: current Loglikelihood = {}".format(i+1,path_Loglikelihood[-1])
+        print("{} iteration: current Loglikelihood = {}".format(i+1,path_Loglikelihood[-1]))
         sys.stdout.flush()
         if i>=burnin:
             sampled_tree.append(curr_tree)
@@ -145,7 +145,7 @@ def hmc(curr_tree, curr_branch, Qmat_para, data, nLeap, stepsz, nIter, subModel=
             accept_count += accepted
         Accepted += accepted
         if (i+1)%printfreq == 0:
-            print "{} iterations completed; acceptance rate: {}".format(i+1, Accepted/printfreq)
+            print("{} iterations completed; acceptance rate: {}".format(i+1, Accepted/printfreq))
             sys.stdout.flush()
             Accepted = 0.0
             
@@ -154,7 +154,7 @@ def hmc(curr_tree, curr_branch, Qmat_para, data, nLeap, stepsz, nIter, subModel=
         samp_para_file.close()
         samp_stat_file.close()
         
-    print "Overall acceptance rate: {}".format(accept_count/(nIter-burnin))
+    print("Overall acceptance rate: {}".format(accept_count/(nIter-burnin)))
     return sampled_tree, sampled_branch, path_U, path_Loglikelihood, nni_attempts, accept_rate, accept_count 
 
     

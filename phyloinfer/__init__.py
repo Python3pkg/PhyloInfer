@@ -1,12 +1,12 @@
 from ete3 import Tree
 import numpy as np
-import rateMatrix as rateM
-import Loglikelihood
-import Logprior
-import Logposterior
-import phyloHMC as phmc
-import dataManipulation as data
-import branchManipulation as branch
-import treeManipulation as tree
-import resultAnalysis as result 
+from . import rateMatrix as rateM
+from . import Loglikelihood
+from . import Logprior
+from . import Logposterior
+from . import phyloHMC as phmc
+from . import dataManipulation as data
+from . import branchManipulation as branch
+from . import treeManipulation as tree
+from . import resultAnalysis as result 
 
